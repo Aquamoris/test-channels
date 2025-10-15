@@ -7,7 +7,7 @@ function main() {
   const chManager = new ChannelManager(channels);
 
   setInterval(() => {
-    Logger(LogLevel.INFO, `MAIN Active is ${chManager.activeChannel?.id}`);
+    Logger(LogLevel.INFO, `MAIN Active is ${chManager.getActiveChannel()?.id}`);
   }, 1000);
 }
 

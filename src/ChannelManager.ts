@@ -4,12 +4,16 @@ import type { IChannel } from "./lib/types";
 
 export class ChannelManager {
   private channels: IChannel[];
-  public activeChannel: IChannel | null = null;
+  private activeChannel: IChannel | null = null;
   private connecting: boolean = false;
 
   constructor(channels: IChannel[]) {
     this.channels = channels.sort((a, b) => a.priority - b.priority);
     this.connect();
+  }
+
+  getActiveChannel() {
+    return this.activeChannel;
   }
 
   async connect() {
