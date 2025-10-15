@@ -1,5 +1,6 @@
 import { LogLevel } from "./types";
 
 export const Logger = (logLevel: LogLevel, message: string) => {
-  console.log(`${logLevel}: ${message}`);
+  const now = new Date().toISOString();
+  console.log(`[${now}] [${logLevel}]: ${message}`);
 };

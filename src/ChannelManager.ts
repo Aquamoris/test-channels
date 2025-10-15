@@ -10,6 +10,7 @@ export class ChannelManager {
   constructor(channels: IChannel[]) {
     this.channels = channels.sort((a, b) => a.priority - b.priority);
     this.connect();
+    this.monitor();
   }
 
   getActiveChannel() {
@@ -44,8 +45,6 @@ export class ChannelManager {
     if (this.activeChannel == null) {
       Logger(LogLevel.FATAL, "No active channels");
     }
-
-    this.monitor();
   }
 
   async connectChannel(ch: IChannel): Promise<boolean> {
@@ -80,6 +79,8 @@ export class ChannelManager {
             Logger(LogLevel.ERROR, `Active channel disconnected`);
             await this.connect();
           }
+        } else {
+          await this.connect();
         }
 
         for (const ch of this.channels) {
